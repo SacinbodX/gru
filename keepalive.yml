@@ -1,0 +1,11 @@
+# Render bepul rejasi uxlab qolmasligi uchun har 10 daqiqada /health ga so'rov yuboradi.
+# Repo → Settings → Secrets → Actions → APP_URL = https://sizning-app.onrender.com
+name: keepalive
+on:
+  schedule: [{ cron: '*/10 * * * *' }]
+  workflow_dispatch:
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - run: curl -fsS "${{ secrets.APP_URL }}/health"
